@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Таблица</title>
+    <style>
+        body{
+            font-family: "Caveat", cursive;
+            font-optical-sizing: auto;
+            font-style: normal;
+            background-color: #352963;
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            margin-top: 20px;
+            width: 600px;
+            border-collapse: collapse;
+        }
+        th{
+            background-color: #9a72e3;
+            border: 2px solid black;
+            padding: 8px;
+            color: #371c77;
+        }
+        td {
+
+            background-color: white;
+            border: 2px solid black;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+<table id="table">
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Почта</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script>
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+            .then(bu =>{
+                console.log(bu);
+            const table = document.getElementById('table')
+            bu.forEach(bt =>{
+                const row = document.createElement('tr');
+                const name = document.createElement('td');
+                const email = document.createElement('td');
+                
+                name.textContent = bt.name;
+                email.textContent = bt.email;
+            
+                row.appendChild(name);
+                row.appendChild(email);
+                table.appendChild(row);
+            });
+        })
+            .catch(error => console.error('Ошибка:', error));
+</script>
+</body>
+</html>
